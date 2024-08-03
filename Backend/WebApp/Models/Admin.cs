@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -26,11 +27,22 @@ namespace Hash.Models
 
 		[DefaultValue(false)]
 		[Column("IsloggedIn")]
-		public bool IsloggedIn
-		{
-			get;
+		public bool IsloggedIn{	get; set; }
 
-			set;
-		}
-	}
+
+
+        public class hashparkingDBContext : DbContext
+        {
+            public hashparkingDBContext(DbContextOptions options) : base(options)
+            {
+
+            }
+
+            protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+            {
+                base.OnConfiguring(optionsBuilder);
+            }
+
+            public DbSet<Admin> Admins { get; set; }
+        }
 }

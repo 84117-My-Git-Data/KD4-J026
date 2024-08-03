@@ -71,53 +71,6 @@ namespace WebApp.Controllers
 		}
 
 
-		/*public String Login(User user)
-		{ 
-			var u = context.Users.Where(u=>u.FirstName==user.FirstName).FirstOrDefault();
-			if (u != null)
-			{
-				return ("Successfully login");
-			}
-			else 
-			{
-				return ("Login failed");
-			}
-		}*/
-		[HttpPost("userlogin")]
-		public String Login([FromBody]LoginRequestDto loginRequest)
-		{
-	
-			var userEmail = context.Users.Where(u => u.Email==loginRequest.Email).FirstOrDefault();
-			
-			if (userEmail != null)
-			{
-				
-
-				var userPassword = context.Users.Where(u => u.Password == loginRequest.Password).FirstOrDefault();
-
-				if (userPassword != null)
-				{
-					 User GetUserByEmail(string userEmail )
-					{
-						return context.Users.SingleOrDefault(aa => aa.Email == userEmail);
-					}
-
-
-					return ("Successfully login");
-
-				}
-				else
-				{
-					return ("Invalid Password...");
-				}
-
-			}
-			else
-			{
-				return ("Invalid Email...");
-			}
-		}
-
 
 	}
 }
