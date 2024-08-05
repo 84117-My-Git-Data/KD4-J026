@@ -10224,19 +10224,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\rkhem\\.nuget\\packages\\": {}
+    "C:\\Users\\harsh\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\rkhem\\Desktop\\Final Project DAC\\KD4-J026\\Backend\\WebApp\\WebApp.csproj",
+      "projectUniqueName": "D:\\Git\\SUNBEAMGITDATA\\KD4-J026\\Backend\\WebApp\\WebApp.csproj",
       "projectName": "WebApp",
-      "projectPath": "C:\\Users\\rkhem\\Desktop\\Final Project DAC\\KD4-J026\\Backend\\WebApp\\WebApp.csproj",
-      "packagesPath": "C:\\Users\\rkhem\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\rkhem\\Desktop\\Final Project DAC\\KD4-J026\\Backend\\WebApp\\obj\\",
+      "projectPath": "D:\\Git\\SUNBEAMGITDATA\\KD4-J026\\Backend\\WebApp\\WebApp.csproj",
+      "packagesPath": "C:\\Users\\harsh\\.nuget\\packages\\",
+      "outputPath": "D:\\Git\\SUNBEAMGITDATA\\KD4-J026\\Backend\\WebApp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\rkhem\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\harsh\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

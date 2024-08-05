@@ -19,6 +19,8 @@ namespace WebApp.Models
 
         public DbSet<User> Users { get; set; }
 
+        public DbSet<Booking> Bookings { get; set; }
+
 
     }
 }
