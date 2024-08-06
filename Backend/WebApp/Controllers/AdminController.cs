@@ -12,11 +12,22 @@ namespace WebApp.Controllers
     {
         hashparkingDBContext context = null;
 
+        public AdminController(hashparkingDBContext _context)
+        {
+            context = _context;
+        }
+
         // GET: api/<AdminController>
-        [HttpGet]
+        [HttpGet("GetAllUsersInAdmin")]
         public IEnumerable<User> GetAllUsersInAdmin()
         {
             return (context.Users.ToList());
+        }
+
+        [HttpGet("GetAllBookingsInAdmin")]
+        public IEnumerable<Booking> GetAllBookingsInAdmin()
+        {
+            return (context.Bookings.ToList());
         }
 
         // GET api/<AdminController>/5
@@ -39,9 +50,24 @@ namespace WebApp.Controllers
         }
 
         // DELETE api/<AdminController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("DeleteUserInAdmin/{UserId}")]
+        public String DeleteUserInAdmin(int? UserId)
         {
+            User user = context.Users.Find(UserId);
+
+            if (user != null)
+            {
+                context.Users.Remove(user);
+
+                context.SaveChanges();
+
+                return "User deleted successfully...";
+            }
+            else
+            {
+
+                return "User doesn't exist...";
+            }
         }
     }
 }
