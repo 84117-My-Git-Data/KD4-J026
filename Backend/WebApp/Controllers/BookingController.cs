@@ -77,7 +77,7 @@ namespace WebApp.Controllers
                 return BadRequest("Not enough slots available.");
             }
 
-            booking.TotalCost = (booking.EndTime - booking.StartTime).TotalHours * booking.ParkingCostPerHour;
+            booking.TotalCost = (booking.EndTime - booking.StartTime).TotalHours * booking.ParkingCostPerHour * booking.Slots;
 
             _Context.Bookings.Add(booking);
             _Context.SaveChanges();
