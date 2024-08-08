@@ -2,6 +2,9 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
+using WebApp.Controllers;
+using WebApp.Dto;
+using System.Data.SqlTypes;
 
 namespace Hash.Models
 {
@@ -22,8 +25,10 @@ namespace Hash.Models
         [Column("Date")]
         public DateTime Date { get; set; }
 
+
         [Required]
         [Column("ParkingCostPerHour")]
+        [DefaultValue("0")]
         public double ParkingCostPerHour { get; set; }
 
 
@@ -42,11 +47,15 @@ namespace Hash.Models
 
         [Required]
         [Column("TotalCost")]
+        [DefaultValue("0")]
         public double TotalCost { get; set; }
 
         [Required]
         [Column("Slots")]
         public int Slots { get; set; }
+
+        [ForeignKey("User.UserId")]
+        public int UserId { get; set; }
 
     }
 
