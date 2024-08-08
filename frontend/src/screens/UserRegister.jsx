@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { toast } from "react-toastify"
-import Navbar from "../components/navbar"
+import Unavbar from "../components/unavbar"
 
 function UserRegister() {
     const [firstName, setFirstName] = useState('')
@@ -43,7 +43,7 @@ function UserRegister() {
     }
     
     return (<div>
-        <Navbar/>
+        <Unavbar/>
         <h2 className="page-header">UserRegister</h2>
         <div className="row">
         <div className="col"></div>

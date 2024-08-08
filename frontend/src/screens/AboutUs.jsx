@@ -1,15 +1,15 @@
 import { Link } from "react-router-dom";
 import Footer from "../components/footer1"
-import Navbar from "../components/navbar"
+import Unavbar from "../components/unavbar"
 import about from "../assets/about.jpg"
 import carcity from "../assets/carcity.jpeg"
 import carincity from "../assets/carincity.jpg"
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import {Row, Col, Card } from 'react-bootstrap';
 
 function AboutUs() {
     return (
         <div className="container-fluid">
-            <Navbar />
+            <Unavbar />
             <h1 className="page-header text-primary">About Us</h1>
             <Row>
                 <Col md={12}>

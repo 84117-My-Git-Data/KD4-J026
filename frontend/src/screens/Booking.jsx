@@ -1,8 +1,7 @@
 import { useState } from "react"
-import Footer from "../components/footer1";
-import Navbar from "../components/navbar"
 import { toast } from "react-toastify"
 import { useNavigate } from "react-router-dom"
+import Unavbar from "../components/unavbar";
 
 function Booking() {
     const [vehicleNo, setVehicleNo] = useState('')
@@ -42,7 +41,7 @@ function Booking() {
     }
 
     return (<div className="container-fluid">
-        <Navbar/>    
+        <Unavbar/>    
         <h2 className="page-header">Bookings</h2>
         <div className="row">
             <div className="col"></div>
@@ -58,11 +57,6 @@ function Booking() {
                     <input 
                     onChange={(e)=>setDate(e.target.value)}
                     type="date" className="form-control"/>
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="">ParkingCostPerHour</label>
-                    <input onChange={(e)=>setParkingCostperHour(e.target.value)}
-                    type="number" className="form-control"/>
                 </div>
                 <div className="mb-3">
                     <label htmlFor="">Vehicle Type</label>
@@ -83,12 +77,6 @@ function Booking() {
                     <label htmlFor="">Slot</label>
                     <input 
                     onChange={(e)=>setSlot(e.target.value)}
-                    type="number" className="form-control"/>
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="">Total Cost</label>
-                    <input 
-                    onChange={(e)=>setTotalCost(e.target.value)}
                     type="number" className="form-control"/>
                 </div>
                 <div className="d-flex justify-content-center">

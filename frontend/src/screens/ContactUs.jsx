@@ -1,11 +1,11 @@
 import Footer from "../components/footer"
-import Navbar from "../components/navbar"
 import { Container, Row, Col, Card } from 'react-bootstrap';
+import Unavbar from "../components/unavbar";
 
 function ContactUs() {
     return (
         <div className="container-fluid">
-            <Navbar />
+            <Unavbar />
             <Container>
                 <Row>
                     <Col md={12}>
