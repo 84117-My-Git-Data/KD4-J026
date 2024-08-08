@@ -22,5 +22,11 @@ namespace WebApp.Models
         public DbSet<Booking> Bookings { get; set; }
 
 
+        public DbSet<Cost> Costs { get; set; }
+
+
+        public DbSet<Floor> Floors { get; set; }
+
+
     }
 }
