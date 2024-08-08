@@ -3,6 +3,7 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
+import Unavbar from "../components/unavbar";
 
 function UserLogin() {
 
@@ -26,7 +27,7 @@ function UserLogin() {
 
 
     return (<div>
-        <Navbar/>
+        <Unavbar/>
         <br />
         <br />
         <br />

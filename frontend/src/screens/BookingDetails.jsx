@@ -1,8 +1,8 @@
-import Navbar from "../components/navbar"
+import Unavbar from "../components/unavbar"
 
 function BookingDetails() {
     return (<div className="container-fluid">
-        <Navbar/>
+        <Unavbar/>
         <h2 className="page-header">Booking Details</h2>
     </div>
     )

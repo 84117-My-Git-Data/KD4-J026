@@ -1,12 +1,12 @@
-import Navbar from "../components/navbar"
 import Auction from "../assets/home.png"
 import Footer from "../components/footer"
 import { Link } from "react-router-dom"
 import { Row, Col } from 'react-bootstrap';
+import Unavbar from "../components/unavbar";
 
 function Home() {
     return (<div className="container mt-5">
-        <Navbar/>
+        <Unavbar/>
         <div className="card bg-dark text-white image">
             <Link to="/login" style={{ textDecoration: 'none' }}>
                 <img src={Auction} className="card-img-top" alt="Auction" width="80" height="500" style={{ borderRadius: '10px' }}/>

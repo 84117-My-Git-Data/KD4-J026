@@ -9,6 +9,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import AboutUs from "./screens/AboutUs";
 import ContactUs from "./screens/ContactUs";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import AdminLogin from "./screens/AdminLogin";
+import AdminHome from "./screens/AdminHome";
 
 
 
@@ -25,6 +27,8 @@ function App() {
         <Route path="bookingDetails" element={<BookingDetails/>}/>
         <Route path="aboutus" element={<AboutUs/>}/>
         <Route path="contactus" element={<ContactUs/>}/>
+        <Route path="adminlogin" element={<AdminLogin/>}/>
+        <Route path="adminhome" element={<AdminHome/>}/>
       </Routes>
       <ToastContainer />
     </div>
