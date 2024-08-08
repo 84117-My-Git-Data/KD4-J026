@@ -9,69 +9,85 @@ using WebApp.Models;
 
 namespace WebApp.Controllers
 {
-	[Route("api/[controller]")]
-	[ApiController]
-	public class UserController : ControllerBase
-	{
-		hashparkingDBContext context = null;
-		public UserController(hashparkingDBContext _context) 
-		{
-			context = _context;
-		}
-		// GET: api/<UserController>
-		[HttpGet]
-		public IEnumerable<User> GetAllUsers()
-		{
-			return context.Users.ToList();
-		}
+    [Route("api/[controller]")]
+    [ApiController]
+    public class UserController : ControllerBase
+    {
+        hashparkingDBContext context = null;
+        public UserController(hashparkingDBContext _context)
+        {
+            context = _context;
+        }
+        // GET: api/<UserController>
+        [HttpGet]
+        public IEnumerable<User> GetAllUsers()
+        {
+            return context.Users.ToList();
+        }
 
 
-		// GET api/<UserController>/5
-		[HttpGet("{id}")]
-		public User Get(int id)
-		{
-			User getUser = context.Users.Find(id);
-			if (getUser != null) {
-				return getUser;
-			}
+        // GET api/<UserController>/5
+        [HttpGet("{id}")]
+        public User Get(int id)
+        {
+            User getUser = context.Users.Find(id);
+            if (getUser != null)
+            {
+                return getUser;
+            }
 
-			return null;
-		}
+            return null;
+        }
 
-		// POST api/<UserController>
-		[HttpPost("registeruser")]
-		public void Post([FromBody] User user)
-		{
-			Console.WriteLine(user.ToString());
-			context.Users.Add(user);
-			context.SaveChanges();
-		}
+        // POST api/<UserController>
+        [HttpPost("registeruser")]
+        public string Post([FromBody] UserRequestDto userRequest)
+        {
+            User user = new User();
 
-		// PUT api/<UserController>/5
-		[HttpPut("{id}")]
-		public void Put(int id, [FromBody] User user)
-		{
-			User userToEdit = context.Users.Find(id);
-			userToEdit.FirstName = user.FirstName;
-			userToEdit.LastName = user.LastName;
-			userToEdit.Gender = user.Gender;
-			userToEdit.Age = user.Age;
-			userToEdit.IsloggedIn = user.IsloggedIn;
-			context.SaveChanges();
+            user.FirstName = userRequest.FirstName;
+            user.LastName = userRequest.LastName;
+            user.Email = userRequest.Email;
+            user.Password = userRequest.Password;
+            user.PhoneNumber = userRequest.PhoneNumber;
+            user.Gender = userRequest.Gender;
+            user.Age = userRequest.Age;
+            user.IsloggedIn = false;
 
-		}
+            context.Users.Add(user);
+            context.SaveChanges();
 
-		// DELETE api/<UserController>/5
-		[HttpDelete("{id}")]
-		public void Delete(int id)
-		{
-			User userTobedeleted = context.Users.Find(id);
-			context.Users.Remove(userTobedeleted);
-			context.SaveChanges();
+            return "User added";
+        }
 
-		}
+        // PUT api/<UserController>/5
+        [HttpPut("{id}")]
+        public void Put(int id, [FromBody] UserEditDto userEdit)
+        {
+            User userToBeEdit = context.Users.Find(id);
+
+            userToBeEdit.FirstName = userEdit.FirstName;
+            userToBeEdit.LastName = userEdit.LastName;
+            userToBeEdit.Gender = userEdit.Gender;
+            userToBeEdit.Age = userEdit.Age;
+            userToBeEdit.Password = userEdit.Password;
+
+            context.Users.Update(userToBeEdit);
+            context.SaveChanges();
+
+        }
+
+        // DELETE api/<UserController>/5
+        [HttpDelete("{id}")]
+        public void Delete(int id)
+        {
+            User userTobedeleted = context.Users.Find(id);
+            context.Users.Remove(userTobedeleted);
+            context.SaveChanges();
+
+        }
 
 
 
-	}
+    }
 }
