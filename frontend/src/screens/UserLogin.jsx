@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
+import { loginUser } from "../services/user";
 
 
 function UserLogin() {
