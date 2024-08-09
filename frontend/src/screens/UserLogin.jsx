@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
-import Unavbar from "../components/unavbar";
+
 
 function UserLogin() {
 
@@ -13,7 +13,7 @@ function UserLogin() {
     const [isEmailEmpty, setEmailEmpty] = useState(false)
     const [isPassowrdEmpty, setPasswordEmpty] = useState(false)
 
-    const onLogin = () => {
+    const onLogin = async() => {
         if (email.length == 0) {
             toast.error('please enter email')
         } else if (password.length == 0) {
@@ -21,13 +21,23 @@ function UserLogin() {
         } else{
             //call login API and check its status
             // go to home screen
-            navigate('/home')
+            const result = await loginUser(email, password)
+            if (result['status'] == 'success') {
+                //cache the token
+                const token = result['data']['token']
+                sessionStorage['token'] = token
+                toast.success('WelCome To HASH Parking')
+                navigate('/home')
+            } else{
+                toast.error(result['error'])
+            }
+            
         }
     }
 
 
     return (<div>
-        <Unavbar/>
+        <Navbar/>
         <br />
         <br />
         <br />
