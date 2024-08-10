@@ -5,7 +5,7 @@ import { Row, Col } from 'react-bootstrap';
 import Unavbar from "../components/unavbar";
 
 function Home() {
-    return (<div className="container mt-5">
+    return (<div className="container-fluid">
         <Unavbar/>
         <div className="card bg-dark text-white image">
             <Link to="/login" style={{ textDecoration: 'none' }}>
