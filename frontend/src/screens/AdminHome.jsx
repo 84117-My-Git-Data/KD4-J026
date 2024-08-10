@@ -6,7 +6,7 @@ import { Row, Col } from 'react-bootstrap';
 
 
 function AdminHome() {
-    return (<div className="container mt-5">
+    return (<div className="container-fluid">
         <Navbar/>
         <div className="card bg-dark text-white image">
             <Link to="/login" style={{ textDecoration: 'none' }}>
