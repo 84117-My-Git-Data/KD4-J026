@@ -11,6 +11,7 @@ import ContactUs from "./screens/ContactUs";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AdminLogin from "./screens/AdminLogin";
 import AdminHome from "./screens/AdminHome";
+import ParkingCost from "./screens/ParkingCost";
 
 
 
@@ -29,6 +30,7 @@ function App() {
         <Route path="contactus" element={<ContactUs/>}/>
         <Route path="adminlogin" element={<AdminLogin/>}/>
         <Route path="adminhome" element={<AdminHome/>}/>
+        <Route path="parkingcost" element={<ParkingCost/>}/>
       </Routes>
       <ToastContainer />
     </div>
