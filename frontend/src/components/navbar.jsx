@@ -57,7 +57,7 @@ function Navbar() {
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link to='/booking' className="nav-link" aria-current="page">
+                            <Link to='/bookingDetails' className="nav-link" aria-current="page">
                                 BookingDetails
                             </Link>
                         </li>
