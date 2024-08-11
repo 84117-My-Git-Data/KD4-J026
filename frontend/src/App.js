@@ -3,7 +3,7 @@ import UserLogin from "./screens/UserLogin";
 import UserRegister from "./screens/UserRegister";
 import Home from "./screens/Home";
 import Booking from './screens/Booking';
-import BookingDetails from './screens/BookingDetails';
+import AdminBookingDetails from './screens/AdminBookingDetails';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AboutUs from "./screens/AboutUs";
@@ -25,7 +25,7 @@ function App() {
         <Route path="register" element={<UserRegister/>}/>
         <Route path="home" element={<Home/>}/>
         <Route path="booking" element={<Booking/>}/>
-        <Route path="bookingDetails" element={<BookingDetails/>}/>
+        <Route path="bookingDetails" element={<AdminBookingDetails/>}/>
         <Route path="aboutus" element={<AboutUs/>}/>
         <Route path="contactus" element={<ContactUs/>}/>
         <Route path="adminlogin" element={<AdminLogin/>}/>
