@@ -39,7 +39,7 @@ function UserRegister() {
             //call register API, check the status
             //if success go to the Login screen
             const result = await registerUser(firstName, lastName, email, Password, phoneNo, gender, age)
-            if (result['status'] == 'success') {
+            if (result!= 'success') {
                 toast.success('Successfully register a new user')
                 navigate('/login')
             } else{
