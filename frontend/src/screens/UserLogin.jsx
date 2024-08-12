@@ -23,9 +23,9 @@ function UserLogin() {
             //call login API and check its status
             // go to home screen
             const result = await loginUser(email, password)
-            if (result['status'] == 'success') {
+            if (result!= 'undefined') {
                 //cache the token
-                const token = result['data']['token']
+                const token = result['token']
                 sessionStorage['token'] = token
                 toast.success('WelCome To HASH Parking')
                 navigate('/home')
