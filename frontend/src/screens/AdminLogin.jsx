@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Navbar from "../components/navbar";
+import {loginAdmin} from "../services/admin";
 
 
 function AdminLogin() {
