@@ -3,7 +3,7 @@ import { createUrl, createError } from "./utils";
 
 export async function registerUser(firstname, lastname, email, password, phoneNo, gender, age){
     try{
-        const url = createUrl('user/register')
+        const url = createUrl('api/User/registeruser')
         const body = {
             firstname, 
             lastname, 
@@ -22,7 +22,7 @@ export async function registerUser(firstname, lastname, email, password, phoneNo
 
 export async function loginUser(email, password){
     try{
-        const url = createUrl('user/register')
+        const url = createUrl('api/Login/userlogin')
         const body = { 
             email, 
             password
