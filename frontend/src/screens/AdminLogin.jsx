@@ -27,7 +27,7 @@ function AdminLogin() {
                 const token = result['token']
                 sessionStorage['token'] = token
                 toast.success('WelCome To HASH Parking')
-                navigate('/home')
+                navigate('/adminhome')
             } else{
                 toast.error(result['error'])
             }
