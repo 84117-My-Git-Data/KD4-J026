@@ -12,7 +12,7 @@ function AdminLogin() {
     const [isEmailEmpty, setEmailEmpty] = useState(false)
     const [isPassowrdEmpty, setPasswordEmpty] = useState(false)
 
-    const onLogin = () => {
+    const onLogin = async() => {
         if (email.length == 0) {
             toast.error('please enter email')
         } else if (password.length == 0) {
@@ -20,7 +20,16 @@ function AdminLogin() {
         } else{
             //call login API and check its status
             // go to home screen
-            navigate('/home')
+            const result = await loginAdmin(email, password)
+            if (result!= 'undefined') {
+                //cache the token
+                const token = result['token']
+                sessionStorage['token'] = token
+                toast.success('WelCome To HASH Parking')
+                navigate('/home')
+            } else{
+                toast.error(result['error'])
+            }
         }
     }
 
