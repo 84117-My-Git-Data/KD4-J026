@@ -40,30 +40,18 @@ namespace WebApp.Controllers
         {
             Floor floor = new Floor();
 
-            if (!(floorRequest.SlotOccupied <= floorRequest.TotalSlot))
-            {
-                return "slotoccupied must be less or equal to totalslot";
-            }
-            else if (!(floorRequest.SlotAvailable <= floorRequest.TotalSlot))
-            {
-                return "SlotAvailable must be less or equal to totalslot";
-            }
-            else 
-            {
-                floor.FloorName = floorRequest.FloorName;
-                floor.SlotAvailable = floorRequest.SlotAvailable;
-                floor.SlotOccupied = floorRequest.SlotOccupied;
-                floor.TotalSlot = floorRequest.TotalSlot;
+            floor.FloorName = floorRequest.FloorName;
+            floor.TotalSlot = floorRequest.TotalSlot;
 
-                context.Floors.Add(floor);
-                context.SaveChanges();
+            context.Floors.Add(floor);
+            context.SaveChanges();
 
-                return "Floor added";
+            return "Floor added";
 
-            }
 
-            
         }
+
+
 
         // PUT api/<FloorController>/5
         [HttpPut("{id}")]
@@ -73,8 +61,6 @@ namespace WebApp.Controllers
 
             if (floor != null)
             {
-                floor.SlotAvailable = floorEdit.SlotAvailable;
-                floor.SlotOccupied = floorEdit.SlotOccupied;
                 floor.TotalSlot = floorEdit.TotalSlot;
 
                 context.Floors.Update(floor);
@@ -93,7 +79,7 @@ namespace WebApp.Controllers
         {
             Floor floorToBeDeleted = context.Floors.Find(id);
 
-            if(floorToBeDeleted != null)
+            if (floorToBeDeleted != null)
             {
                 context.Floors.Remove(floorToBeDeleted);
 
@@ -104,7 +90,7 @@ namespace WebApp.Controllers
             }
 
             return "Floor can't be deleted";
-            
+
         }
     }
 }
