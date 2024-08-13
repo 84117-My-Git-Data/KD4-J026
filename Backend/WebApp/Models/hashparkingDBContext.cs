@@ -27,6 +27,8 @@ namespace WebApp.Models
 
         public DbSet<Floor> Floors { get; set; }
 
+        public DbSet<Slot> Slots { get; set; }
+
 
     }
 }
