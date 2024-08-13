@@ -70,7 +70,7 @@ namespace WebApp.Controllers
 
 
         // DELETE api/<AdminController>/5
-        [HttpDelete("DeleteUserInAdmin/{UserId}")]
+        /*[HttpDelete("DeleteUserInAdmin/{UserId}")]
         public String DeleteUserInAdmin(int? UserId)
         {
             User user = context.Users.Find(UserId);
@@ -88,6 +88,6 @@ namespace WebApp.Controllers
 
                 return "User doesn't exist...";
             }
-        }
+        }*/
     }
 }

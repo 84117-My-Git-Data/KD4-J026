@@ -78,14 +78,14 @@ namespace WebApp.Controllers
         }
 
         // DELETE api/<UserController>/5
-        [HttpDelete("{id}")]
+        /*[HttpDelete("{id}")]
         public void Delete(int id)
         {
             User userTobedeleted = context.Users.Find(id);
             context.Users.Remove(userTobedeleted);
             context.SaveChanges();
 
-        }
+        }*/
 
 
 
