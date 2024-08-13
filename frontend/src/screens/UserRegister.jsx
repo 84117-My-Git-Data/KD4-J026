@@ -5,23 +5,24 @@ import Navbar from "../components/navbar"
 import { registerUser } from "../services/user"
 
 function UserRegister() {
-    const [firstName, setFirstName] = useState('')
-    const [lastName, setLastName] = useState('')
-    const [email, setEmail] = useState('')
+    const [FirstName, setFirstName] = useState('')
+    const [LastName, setLastName] = useState('')
+    const [Email, setEmail] = useState('')
     const [Password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
-    const [phoneNo, setPhoneNo] = useState('')
-    const [gender, setGender] = useState('')
-    const [age, setAge] = useState('')
+    const [PhoneNumber, setPhoneNumber] = useState('')
+    const [Gender, setGender] = useState('')
+    const [Age, setAge] = useState('')
     
     const navigate = useNavigate()
 
     const onRegister = async () => {
-        if (firstName.length == 0){
+        debugger;
+        if (FirstName.length == 0){
             toast.error('Please enter First name')
-        } else if (lastName.length == 0) {
+        } else if (LastName.length == 0) {
             toast.error('please enter last name')
-        } else if (email.length == 0){
+        } else if (Email.length == 0){
             toast.error('please enter email')
         } else if (Password.length == 0){
             toast.error('please enter password')
@@ -29,17 +30,18 @@ function UserRegister() {
             toast.error('please enter confirm password')
         } else if (Password != confirmPassword){
             toast.error('password and confirmpassword does not match')
-        }else if (phoneNo.length == 0){
+        }else if (PhoneNumber.length == 0){
             toast.error('please enter phone number')
-        } else if (gender.length == 0){
+        } else if (Gender.length == 0){
             toast.error('please enter gender')
-        } else if (age.length == 0){
+        } else if (Age.length == 0){
             toast.error('please enter age')
         } else{
             //call register API, check the status
             //if success go to the Login screen
-            const result = await registerUser(firstName, lastName, email, Password, phoneNo, gender, age)
-            if (result!= 'success') {
+            debugger;
+            const result = await registerUser(FirstName, LastName, Email, Password, PhoneNumber, Gender, Age)
+            if (result== 'success') {
                 toast.success('Successfully register a new user')
                 navigate('/login')
             } else{
@@ -84,7 +86,7 @@ function UserRegister() {
                         </div>
                         <div className="mb-3">
                             <label htmlFor="">Phone No</label>
-                            <input onChange={(e)=>setPhoneNo(e.target.value)}
+                            <input onChange={(e)=>setPhoneNumber(e.target.value)}
                             type="tel" className="form-control"/>
                         </div> 
                         <div className="mb-3">
