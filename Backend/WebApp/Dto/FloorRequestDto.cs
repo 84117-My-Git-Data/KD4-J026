@@ -7,10 +7,6 @@ namespace WebApp.Dto
         
         public string FloorName { get; set; }
 
-        public int SlotAvailable {  get; set;}
-
-        public int SlotOccupied { get; set; }
-
         public int TotalSlot { get; set; }
         
     }
