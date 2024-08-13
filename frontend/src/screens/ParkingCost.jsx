@@ -2,13 +2,35 @@
 import Navbar from "../components/navbar"
 import { useState } from "react";
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
-function ParkingCost() {
-  const [bikeCost, setBikeCost] = useState('');
-  const [carCost, setCarCost] = useState('');
 
-  const handleSubmit = (event) => {
+
+function ParkingCost() {
+  const [parkingcostperhourbike, setParkingCostPerHourBike] = useState('');
+  const [parkingcostperhourcar, setParkingCostPerHourCar] = useState('');
+
+  const handleSubmit = async(event) => {
       event.preventDefault();
-      alert(`Bike Cost: ${bikeCost}, Car Cost: ${carCost}`);
+      //alert(`Bike Cost: ${bikeCost}, Car Cost: ${carCost}`);
+    try{
+        const response = await fetch('http://localhost:5285/api/Admin/EditCost/1',{
+            method:'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                parkingcostperhourbike,
+                parkingcostperhourcar,
+            }),
+        });
+        if(response.ok) {
+            alert('Cost added successfully');
+        } else {
+            alert('failed to add cost') ;
+        }
+    }  catch (error){
+        console.error('Error:', error);
+    }
+
   }; 
   return (<div>
     <Navbar/>
@@ -21,8 +43,8 @@ function ParkingCost() {
                             <Form.Label>Parking Cost for Bike</Form.Label>
                             <Form.Control
                                 type="number"
-                                value={bikeCost}
-                                onChange={(e) => setBikeCost(e.target.value)}
+                                value={parkingcostperhourbike}
+                                onChange={(e) => setParkingCostPerHourBike(e.target.value)}
                                 placeholder="Enter bike parking cost"
                             />
                         </Form.Group>
@@ -34,8 +56,8 @@ function ParkingCost() {
                             <Form.Label>Parking Cost for Car</Form.Label>
                             <Form.Control
                                 type="number"
-                                value={carCost}
-                                onChange={(e) => setCarCost(e.target.value)}
+                                value={parkingcostperhourcar}
+                                onChange={(e) => setParkingCostPerHourCar(e.target.value)}
                                 placeholder="Enter car parking cost"
                             />
                         </Form.Group>
