@@ -51,8 +51,8 @@ namespace Hash.Models
         public double TotalCost { get; set; }
 
         [Required]
-        [Column("Slots")]
-        public int Slots { get; set; }
+        [Column("Slot")]
+        public string Slot { get; set; }
 
         [ForeignKey("User.UserId")]
         public int UserId { get; set; }
