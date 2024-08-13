@@ -13,15 +13,6 @@ namespace Hash.Models
         public string FloorName { get; set; }
 
 
-        [Column("SlotAvailable")]
-        public int SlotAvailable { get; set; }
-
-
-        [Column("SlotOccupied")]
-        public int SlotOccupied { get; set; }
-
-
-
         [Column("TotalSlot")]
         public int TotalSlot { get; set; }
 
