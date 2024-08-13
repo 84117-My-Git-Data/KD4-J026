@@ -1,19 +1,25 @@
 import axios from "axios";
 import { createUrl, createError } from "./utils";
 
-export async function registerUser(firstname, lastname, email, password, phoneNo, gender, age){
+export async function registerUser(FirstName, LastName, Email, Password, PhoneNumber, Gender, Age){
+    debugger;
+
+
+
+
     try{
         const url = createUrl('api/User/registeruser')
         const body = {
-            firstname, 
-            lastname, 
-            email, 
-            password, 
-            phoneNo, 
-            gender, 
-            age
+            FirstName, 
+            LastName, 
+            Email, 
+            Password, 
+            PhoneNumber, 
+            Gender, 
+            Age
         }
         const response = await axios.post(url,body)
+        console.log(response.data);
         return response.data
     } catch(ex) {
         return createError(ex)
