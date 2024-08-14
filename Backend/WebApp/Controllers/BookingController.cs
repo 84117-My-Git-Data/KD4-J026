@@ -147,7 +147,7 @@ namespace WebApp.Controllers
             }
 
             var slot = _Context.Slots
-                 .FirstOrDefault(s => s.FloorId == bookingRequest.FloorId && s.SlotName == bookingRequest.Slots && !s.IsOccupied);
+                 .FirstOrDefault(s => s.FloorId == bookingRequest.FloorId && s.SlotName == bookingRequest.Slot && !s.IsOccupied);
 
             if (slot == null)
             {
@@ -162,7 +162,7 @@ namespace WebApp.Controllers
                 VehicleNumber = bookingRequest.VehicleNumber,
                 VehicleType = bookingRequest.VehicleType,
                 TotalCost = bookingRequest.TotalCost,
-                Slots = bookingRequest.Slots,
+                Slot = bookingRequest.Slot,
                 StartTime = bookingRequest.StartTime,
                 EndTime = bookingRequest.EndTime,
                 Date = bookingRequest.Date,
