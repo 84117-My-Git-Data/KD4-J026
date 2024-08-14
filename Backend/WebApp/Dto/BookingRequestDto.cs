@@ -19,7 +19,9 @@ namespace WebApp.Dto
 
         public DateTime EndTime { get; set; }
 
-        public int Slots { get; set; }
+        public string Slot { get; set; }
+
+        public int FloorId { get; set; }
 
         public int UserId { get; set; }
 
