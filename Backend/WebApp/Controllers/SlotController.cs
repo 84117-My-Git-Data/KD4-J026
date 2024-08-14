@@ -57,154 +57,143 @@ namespace WebApp.Controllers
                 return BadRequest("Slot data is null.");
             }
 
-
-            /* if (slotRequest.FloorId != 1 || slotRequest.FloorId != 2)
-             {
-                 return BadRequest("Only FloorId 1 and 2 are allowed.");
-             }
-
-         Floor floor;
-
-             var slotCount = _context.Slots.Count(s => s.FloorId == slotRequest.FloorId);
-             if (slotCount >= floor.TotalSlot)
-             {
-                 return BadRequest("Each floor can have a maximum of 10 slots.");
-             }*/
-
             var slotName = slotRequest.SlotName;
 
             Console.WriteLine(slotRequest.FloorId);
 
+            Slot newSlot;
+
             switch (slotRequest.FloorId)
             {
                 case 1:
-                    /*var floor1 = _context.Slots.Find(slotRequest.FloorId);
-                    if (floor1 == null)
+                    newSlot = _context.Slots.Where(a => a.SlotName == slotRequest.SlotName).FirstOrDefault();
+
+                    if (newSlot == null)
                     {
-                        return BadRequest("Floor is not available.");
+                        return BadRequest("Slot not available");
                     }
 
-                    if (slotName != floor1.SlotName)
-                    {
-                        return BadRequest("Slot name is not available.");
-                    }*/
-
-                    var newSlot1 = _context.Slots.Where(a => a.SlotName == slotRequest.SlotName).FirstOrDefault();
-
-                    if (newSlot1 == null) { return BadRequest("Not avaliable"); }
-
-                    if (newSlot1.IsOccupied = true)
+                    if (newSlot.IsOccupied)
                     {
                         return BadRequest("Slot is already booked");
                     }
 
-                    newSlot1.IsOccupied = true;
+                    newSlot.IsOccupied = true;
 
                     _context.SaveChanges();
 
-                    return Ok(newSlot1.IsOccupied);
-
-                    break;
+                    return Ok(newSlot.IsOccupied);
 
                 case 2:
+                    newSlot = _context.Slots.Where(b => b.SlotName == slotRequest.SlotName).FirstOrDefault();
 
-                    var newSlot2 = _context.Slots.Where(b => b.SlotName == slotRequest.SlotName).FirstOrDefault(); ;
+                    if (newSlot == null)
+                    {
+                        return BadRequest("Slot not available");
+                    }
 
-                    if (newSlot2 == null) { return BadRequest("Not avaliable"); }
+                    if (newSlot.IsOccupied)
+                    {
+                        return BadRequest("Slot is already booked");
+                    }
 
-                    newSlot2.IsOccupied = true;
+                    newSlot.IsOccupied = true;
 
-                    return Ok(newSlot2.IsOccupied);
+                    _context.SaveChanges();
 
-                    break;
+                    return Ok(newSlot.IsOccupied);
 
                 default:
                     return BadRequest("Invalid floor");
-                    break;
-
             }
         }
 
-            /*   
-                var existingSlot = _context.Slots.FirstOrDefault(s => s.SlotName == slotRequest.SlotName && s.FloorId == slotRequest.FloorId);
-                if (existingSlot != null && existingSlot.IsOccupied)
-                {
-                    return BadRequest("Slot is already occupied and not available for booking.");
-                }
+        internal object BookSlot(int floorId, string slot)
+        {
+            throw new NotImplementedException();
+        }
 
-            Slot slot = new Slot();
-                {
-                slot.FloorId = slotRequest.FloorId;
-                slot.SlotNumber = slotRequest.SlotNumber;
-                slot.IsOccupied = slotRequest.IsOccupied;
-                };
 
-                _context.Slots.Add(slot);
-                _context.SaveChanges();
-
-                return CreatedAtAction(nameof(GetSlot), new { id = slot.SlotId }, slot);
-            }*/
-
-           
-      
-        
-        
-       /* 
-        [HttpPut("{id}")]
-            public ActionResult UpdateSlot(int id, [FromBody] SlotEditDto slotEdit)
+        /*   
+            var existingSlot = _context.Slots.FirstOrDefault(s => s.SlotName == slotRequest.SlotName && s.FloorId == slotRequest.FloorId);
+            if (existingSlot != null && existingSlot.IsOccupied)
             {
-                var slot = _context.Slots.Find(id);
+                return BadRequest("Slot is already occupied and not available for booking.");
+            }
 
-                if (slot == null)
-                {
-                    return NotFound($"Slot with ID {id} not found.");
-                }
+        Slot slot = new Slot();
+            {
+            slot.FloorId = slotRequest.FloorId;
+            slot.SlotNumber = slotRequest.SlotNumber;
+            slot.IsOccupied = slotRequest.IsOccupied;
+            };
 
-              
-                if (slotEdit.FloorId != 1 && slotEdit.FloorId != 4)
-                {
-                    return BadRequest("Only FloorId 1 and 2 are allowed.");
-                }
+            _context.Slots.Add(slot);
+            _context.SaveChanges();
 
-              
-                var slotCount = _context.Slots.Count(s => s.FloorId == slotEdit.FloorId);
-                if (slotCount > 10)
-                {
-                    return BadRequest("Each floor can have a maximum of 10 slots.");
-                }
-
-              
-                if (slotEdit.IsOccupied && slot.IsOccupied)
-                {
-                    return BadRequest("Slot is already occupied and cannot be booked again.");
-                }
-
-                slot.FloorId = slotEdit.FloorId;
-                slot.SlotNumber = slotEdit.SlotNumber;
-                slot.IsOccupied = slotEdit.IsOccupied;
-
-                _context.Slots.Update(slot);
-                _context.SaveChanges();
-
-                return NoContent();
-            }*/
+            return CreatedAtAction(nameof(GetSlot), new { id = slot.SlotId }, slot);
+        }*/
 
 
 
-    // [HttpDelete("{id}")]
-    //     public ActionResult DeleteSlot(int id)
-    //     {
-    //         var slot = _context.Slots.Find(id);
 
-    //         if (slot == null)
-    //         {
-    //             return NotFound($"Slot with ID {id} not found.");
-    //         }
 
-    //         _context.Slots.Remove(slot);
-    //         _context.SaveChanges();
+        /* 
+         [HttpPut("{id}")]
+             public ActionResult UpdateSlot(int id, [FromBody] SlotEditDto slotEdit)
+             {
+                 var slot = _context.Slots.Find(id);
 
-    //         return NoContent();
-    //     }
+                 if (slot == null)
+                 {
+                     return NotFound($"Slot with ID {id} not found.");
+                 }
+
+
+                 if (slotEdit.FloorId != 1 && slotEdit.FloorId != 4)
+                 {
+                     return BadRequest("Only FloorId 1 and 2 are allowed.");
+                 }
+
+
+                 var slotCount = _context.Slots.Count(s => s.FloorId == slotEdit.FloorId);
+                 if (slotCount > 10)
+                 {
+                     return BadRequest("Each floor can have a maximum of 10 slots.");
+                 }
+
+
+                 if (slotEdit.IsOccupied && slot.IsOccupied)
+                 {
+                     return BadRequest("Slot is already occupied and cannot be booked again.");
+                 }
+
+                 slot.FloorId = slotEdit.FloorId;
+                 slot.SlotNumber = slotEdit.SlotNumber;
+                 slot.IsOccupied = slotEdit.IsOccupied;
+
+                 _context.Slots.Update(slot);
+                 _context.SaveChanges();
+
+                 return NoContent();
+             }*/
+
+
+
+        // [HttpDelete("{id}")]
+        //     public ActionResult DeleteSlot(int id)
+        //     {
+        //         var slot = _context.Slots.Find(id);
+
+        //         if (slot == null)
+        //         {
+        //             return NotFound($"Slot with ID {id} not found.");
+        //         }
+
+        //         _context.Slots.Remove(slot);
+        //         _context.SaveChanges();
+
+        //         return NoContent();
+        //     }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using Hash.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
+using NuGet.Protocol.Plugins;
 using WebApp.Dto;
 using WebApp.Models;
 
@@ -55,7 +57,9 @@ namespace WebApp.Controllers
             }
 
             int CostId = 1;
-            Cost cost = _Context.Costs.Find(CostId);
+            var cost = _Context.Costs.Find(CostId);
+
+        
 
             if (cost == null)
             {
@@ -74,7 +78,8 @@ namespace WebApp.Controllers
                     return BadRequest("Invalid vehicle type.");
             }
 
-            double hours = (bookingRequest.EndTime - bookingRequest.StartTime).TotalHours;
+            double hours = Math.Ceiling((bookingRequest.EndTime - bookingRequest.StartTime).TotalHours);
+            
 
             switch (hours)
             {
@@ -134,38 +139,43 @@ namespace WebApp.Controllers
 
             }
 
-            bookingRequest.TotalCost = hours * bookingRequest.ParkingCostPerHour * bookingRequest.Slots;
+            bookingRequest.TotalCost = hours * bookingRequest.ParkingCostPerHour;
 
             if (bookingRequest.TotalCost < bookingRequest.ParkingCostPerHour)
             {
                 bookingRequest.TotalCost = bookingRequest.ParkingCostPerHour;
             }
 
+            var slot = _Context.Slots
+                 .FirstOrDefault(s => s.FloorId == bookingRequest.FloorId && s.SlotName == bookingRequest.Slots && !s.IsOccupied);
 
-            Booking booking = new Booking();
-
-            booking.VehicleNumber = bookingRequest.VehicleNumber;
-            booking.VehicleType = bookingRequest.VehicleType;
-            booking.TotalCost = bookingRequest.TotalCost;
-            booking.Slots = bookingRequest.Slots;
-            booking.StartTime = bookingRequest.StartTime;
-            booking.EndTime = bookingRequest.EndTime;
-            booking.Date = bookingRequest.Date;
-            booking.ParkingCostPerHour = bookingRequest.ParkingCostPerHour;
-            booking.UserId = bookingRequest.UserId;
-
-
-            if (booking == null)
+            if (slot == null)
             {
-                return BadRequest("Booking is not registered, try again.");
+                return BadRequest("Selected slot is not available.");
             }
 
-            _Context.Bookings.Add(booking);
+            slot.IsOccupied = true;
+            _Context.Slots.Update(slot);
 
+            var booking = new Booking
+            {
+                VehicleNumber = bookingRequest.VehicleNumber,
+                VehicleType = bookingRequest.VehicleType,
+                TotalCost = bookingRequest.TotalCost,
+                Slots = bookingRequest.Slots,
+                StartTime = bookingRequest.StartTime,
+                EndTime = bookingRequest.EndTime,
+                Date = bookingRequest.Date,
+                ParkingCostPerHour = bookingRequest.ParkingCostPerHour,
+                UserId = bookingRequest.UserId
+            };
+
+            _Context.Bookings.Add(booking);
             _Context.SaveChanges();
 
             return Ok(booking);
         }
+
 
 
 
@@ -184,8 +194,13 @@ namespace WebApp.Controllers
                 return BadRequest("EndTime should be greater than StartTime.");
             }
 
+
+
             int CostId = 1;
             Cost cost = _Context.Costs.Find(CostId);
+        
+
+
 
             Booking existingBooking = _Context.Bookings.Find(id);
 
@@ -271,10 +286,9 @@ namespace WebApp.Controllers
             existingBooking.VehicleType = bookingEdit.VehicleType;
             existingBooking.StartTime = bookingEdit.StartTime;
             existingBooking.EndTime = bookingEdit.EndTime;
-            existingBooking.Slots = bookingEdit.Slots;
 
 
-            existingBooking.TotalCost = hours * existingBooking.ParkingCostPerHour * existingBooking.Slots;
+            existingBooking.TotalCost = hours * existingBooking.ParkingCostPerHour;
 
             if (existingBooking.TotalCost < existingBooking.ParkingCostPerHour)
             {
