@@ -41,7 +41,9 @@ function UserRegister() {
             //if success go to the Login screen
             debugger;
             const result = await registerUser(FirstName, LastName, Email, Password, PhoneNumber, Gender, Age)
-            if (result== 'success') {
+            //if (result != 'undefined' && result != 'error') 
+            if(result == 'User added')
+            {
                 toast.success('Successfully register a new user')
                 navigate('/login')
             } else{

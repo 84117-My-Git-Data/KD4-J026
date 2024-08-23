@@ -4,9 +4,6 @@ import { createUrl, createError } from "./utils";
 export async function registerUser(FirstName, LastName, Email, Password, PhoneNumber, Gender, Age){
     debugger;
 
-
-
-
     try{
         const url = createUrl('api/User/registeruser')
         const body = {
